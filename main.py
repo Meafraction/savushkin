@@ -16,7 +16,7 @@ def get_dict(name_dict, key_dict):
 
 def create_csv(name_folder, name_dict):
     for key, value in name_dict.items():
-        with open(f'{name_folder}\\{key}.csv', 'w') as new_file:
+        with open(f'task\\data\\{name_folder}\\{key}.csv', 'w') as new_file:
             new_file.writelines(value)
 
 
@@ -45,13 +45,8 @@ if __name__ == '__main__':
             get_dict(weekAll, week_and_year)
             get_dict(weekCid, cid_and_week)
             get_dict(cidAll, cid)
-    create_csv('task\\data\\Every day all sensors', dayAll)
-    create_csv('task\\data\\Every sensor every day', dayCid)
-    create_csv('task\\data\\Every week all sensors', weekAll)
-    create_csv('task\\data\\Every sensor is weekly', weekCid)
-    create_csv('task\\data\\Each sensor for the entire time period', cidAll)
-    create_png('Every day all sensors')
-    create_png('Every sensor every day')
-    create_png('Every week all sensors')
-    create_png('Every sensor is weekly')
-    create_png('Each sensor for the entire time period')
+    for way, name_dict in zip(['Every day all sensors', 'Every sensor every day', 'Every week all sensors',
+                               'Every sensor is weekly', 'Each sensor for the entire time period'],
+                              [dayAll, dayCid, weekAll, weekCid, cidAll]):
+        create_csv(way, name_dict)
+        create_png(way)
